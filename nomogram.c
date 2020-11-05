@@ -7,12 +7,9 @@ int main(void)
 	int T;
 	scanf("%d", &T);
 	for (int testcase = 0; testcase < T; testcase++) {
-		int n, m;
+		int n, m, ok = 0, gasit = 0;
+		int a[LIMIT][LIMIT] = {{0}}, v[LIMIT + LIMIT][LIMIT] = {{0}};
 		scanf("%d %d", &n, &m);
-		int ok = 0;
-		int gasit = 0;
-		int a[LIMIT][LIMIT] = {{0}};
-		int v[LIMIT + LIMIT][LIMIT] = {{0}};
 		for (int i = 0; i < n + m; i++) {
 			scanf("%d", &v[i][0]);
 			for (int j = 1; j <= v[i][0]; j++)
@@ -31,21 +28,25 @@ int main(void)
 				}
 			for (int j = start; j < m; j++) {
 				if (a[i][j] == 0 && a[i][j - 1] == 1) {
-					cnt_v++; continue;
+					cnt_v++;
+					continue;
 				}
 				if (a[i][j] == 1)
 					v[i][cnt_v]--;
 			}
 			for (int j = 1; j <= m; j++)
 				if (v[i][j] != 0) {
-					ok = 1; break;
+					ok = 1;
+					break;
 				}
 			if (ok == 1) {
-				gasit = 1; break;
+				gasit = 1;
+				break;
 			}
 		}
 		if (gasit == 1) {
-			printf("Eroare\n"); continue;
+			printf("Eroare\n");
+			continue;
 		}
 		ok = 0;
 		gasit = 0;
@@ -83,3 +84,4 @@ int main(void)
 	}
 	return 0;
 }
+
